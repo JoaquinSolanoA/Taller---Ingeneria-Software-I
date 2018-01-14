@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Cotizaciones/Cotizaciones.csproj"
+                "${workspaceFolder}/Cotizaciones.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
