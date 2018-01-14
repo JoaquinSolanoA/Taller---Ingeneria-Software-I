@@ -1,0 +1,10 @@
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\bin\Debug\netcoreapp2.0\Cotizaciones.deps.json
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\bin\Debug\netcoreapp2.0\Cotizaciones.runtimeconfig.json
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\bin\Debug\netcoreapp2.0\Cotizaciones.runtimeconfig.dev.json
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\bin\Debug\netcoreapp2.0\Cotizaciones.dll
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\bin\Debug\netcoreapp2.0\Cotizaciones.pdb
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\obj\Debug\netcoreapp2.0\Cotizaciones.csproj.CoreCompileInputs.cache
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\obj\Debug\netcoreapp2.0\Cotizaciones.AssemblyInfoInputs.cache
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\obj\Debug\netcoreapp2.0\Cotizaciones.AssemblyInfo.cs
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\obj\Debug\netcoreapp2.0\Cotizaciones.dll
+c:\GitHub\Taller---Ingeneria-Software-I\Cotizaciones\obj\Debug\netcoreapp2.0\Cotizaciones.pdb
