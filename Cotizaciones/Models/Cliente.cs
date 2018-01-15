@@ -4,7 +4,7 @@
 namespace Cotizaciones.Models {
 
     /// <summary>
-    /// Clase que representa a una persona en el Sistema
+    /// Clase que representa a un Cliente en el Sistema
     /// </summary>
     /// <remarks>
     /// Esta clase pertenece al modelo del Dominio y posee las siguientes restricciones:
