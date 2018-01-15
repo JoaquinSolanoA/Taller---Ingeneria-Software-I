@@ -1,7 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Cotizaciones.Models;
 
+/// <summary>
+/// Archivo donde se definen el Context del problema
+/// </summary>
 namespace Cotizaciones.Data {
+    /// <summary>
+    /// Clase que representa el Context en el Sistema
+    /// </summary>
     public class CotizacionesContext : DbContext {
 
         public CotizacionesContext(DbContextOptions<CotizacionesContext> options) : base(options) {

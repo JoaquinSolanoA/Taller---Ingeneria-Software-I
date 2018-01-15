@@ -19,8 +19,6 @@ namespace Cotizaciones.Models {
 
         public int ClienteId { get; set; }
 
-        public ICollection<int> ServiciosId { get; set; }
-
         public int NReferencia { get; set; }
 
         public double TotalNeto { get; set; }
