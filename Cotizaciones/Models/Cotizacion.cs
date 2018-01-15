@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Archivo donde se definen las clases del Dominio del problema
@@ -18,6 +19,8 @@ namespace Cotizaciones.Models {
 
         public int ClienteId { get; set; }
 
+        public ICollection<int> ServiciosId { get; set; }
+
         public int NReferencia { get; set; }
 
         public double TotalNeto { get; set; }
@@ -26,8 +29,10 @@ namespace Cotizaciones.Models {
 
         public DateTime FechaEmision { get; set; }
 
-        public DateTime FechaVencimiento{ get; set; }
+        public DateTime FechaVencimiento { get; set; }
 
         public Cliente Cliente { get; set; }
+
+        public ICollection<Servicio> Servicios { get; set; }
     }
 }
