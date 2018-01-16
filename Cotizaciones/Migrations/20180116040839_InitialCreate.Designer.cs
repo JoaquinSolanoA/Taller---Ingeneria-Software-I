@@ -11,7 +11,7 @@ using System;
 namespace Cotizaciones.Migrations
 {
     [DbContext(typeof(CotizacionesContext))]
-    [Migration("20180115010350_InitialCreate")]
+    [Migration("20180116040839_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,8 @@ namespace Cotizaciones.Migrations
                     b.Property<double>("Impuesto");
 
                     b.Property<int>("NReferencia");
+
+                    b.Property<double>("TotalCotizacion");
 
                     b.Property<double>("TotalNeto");
 

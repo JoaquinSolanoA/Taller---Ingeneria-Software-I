@@ -11,15 +11,25 @@ namespace Cotizaciones.Models {
     /// - No permite valores null en sus atributos.
     /// </remarks>
     public class Servicio {
-
+        /// <summary>
+        /// Variable Identificador del Servicio
+        /// </summary>
         public int Id { get; set; }
-
+        /// <summary>
+        /// Variable Descripcion del Servicio
+        /// </summary>
         public string Descripcion { get; set; }
-
+        /// <summary>
+        /// Variable Cantidad del Servicio
+        /// </summary>
         public int Cantidad { get; set; }
-
+        /// <summary>
+        /// Variable del Valor del Servicio
+        /// </summary>
         public double ValorUnitario { get; set; }
-
+        /// <summary>
+        /// Variable del Total de servicio por su valor unitario por su cantidad
+        /// </summary>
         public double TotalValor { get; set; }
 
     }

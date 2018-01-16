@@ -57,7 +57,7 @@ namespace Cotizaciones.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClienteId,NReferencia,TotalNeto,Impuesto,FechaEmision,FechaVencimiento")] Cotizacion cotizacion)
+        public async Task<IActionResult> Create([Bind("Id,ClienteId,NReferencia,TotalNeto,Impuesto,TotalCotizacion,FechaEmision,FechaVencimiento")] Cotizacion cotizacion)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Cotizaciones.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClienteId,NReferencia,TotalNeto,Impuesto,FechaEmision,FechaVencimiento")] Cotizacion cotizacion)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClienteId,NReferencia,TotalNeto,Impuesto,TotalCotizacion,FechaEmision,FechaVencimiento")] Cotizacion cotizacion)
         {
             if (id != cotizacion.Id)
             {

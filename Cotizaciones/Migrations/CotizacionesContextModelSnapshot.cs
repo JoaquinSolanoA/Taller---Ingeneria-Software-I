@@ -56,6 +56,8 @@ namespace Cotizaciones.Migrations
 
                     b.Property<int>("NReferencia");
 
+                    b.Property<double>("TotalCotizacion");
+
                     b.Property<double>("TotalNeto");
 
                     b.HasKey("Id");

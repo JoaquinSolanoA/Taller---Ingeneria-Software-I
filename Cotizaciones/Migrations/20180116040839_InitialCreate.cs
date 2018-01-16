@@ -37,6 +37,7 @@ namespace Cotizaciones.Migrations
                     FechaVencimiento = table.Column<DateTime>(nullable: false),
                     Impuesto = table.Column<double>(nullable: false),
                     NReferencia = table.Column<int>(nullable: false),
+                    TotalCotizacion = table.Column<double>(nullable: false),
                     TotalNeto = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
