@@ -1,0 +1,15 @@
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\xunit.runner.utility.netstandard15.dll
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\xunit.runner.reporters.netstandard15.dll
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\CotizacionesTest.deps.json
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\CotizacionesTest.runtimeconfig.json
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\CotizacionesTest.runtimeconfig.dev.json
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\CotizacionesTest.dll
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\CotizacionesTest.pdb
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\Cotizaciones.dll
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\bin\Debug\netcoreapp2.0\Cotizaciones.pdb
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\obj\Debug\netcoreapp2.0\CotizacionesTest.csproj.CoreCompileInputs.cache
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\obj\Debug\netcoreapp2.0\CotizacionesTest.AssemblyInfoInputs.cache
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\obj\Debug\netcoreapp2.0\CotizacionesTest.AssemblyInfo.cs
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\obj\Debug\netcoreapp2.0\CotizacionesTest.dll
+C:\GitHub\Taller---Ingeneria-Software-I\CotizacionesTest\obj\Debug\netcoreapp2.0\CotizacionesTest.pdb
