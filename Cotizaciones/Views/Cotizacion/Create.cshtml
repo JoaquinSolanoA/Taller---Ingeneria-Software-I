@@ -4,14 +4,14 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
-<h4>Cotizacion</h4>
+<h4>Cotización</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-9">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4>Detalles de Cotización:</h4>
             <div class="form-group">
                 <label asp-for="ClienteId" class="control-label"></label>
                 <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
@@ -21,6 +21,7 @@
                 <input asp-for="NReferencia" class="form-control" />
                 <span asp-validation-for="NReferencia" class="text-danger"></span>
             </div>
+<!--Estos atributos no hay que perdirlos->
             <!--div class="form-group">
                 <label asp-for="TotalNeto" class="control-label"></label>
                 <input asp-for="TotalNeto" class="form-control" />
@@ -46,15 +47,62 @@
                 <input asp-for="FechaVencimiento" class="form-control" />
                 <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
             </div>
+
+<!-- Ingreso de los datos del Servicio -->
+            <div class="details">
+                <h4>Servicios:</h4>
+                <table class="table" width="100%">
+                    <tr>
+                        <td>Descripción</td>
+                        <td>Cantidad</td>
+                        <td>Valor Unidad</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class=form-control type="text" id="Descripcion" />
+                        </td>
+                        <td>
+                            <input class=form-control type="text" id="Cantidad" />
+                        </td>
+                        <td>
+                            <input class=form-control type="text" id="ValorUnidad" />
+                        </td>
+                        <td>
+                            <input class="btn btn-primary" type="button" id="add" value="Agregar a la lista" />
+                        </td>
+                    </tr>
+                </table>
+<!-- Tabla servicios -->
+            <div id="servicios" class="table">
+            </div>
+<!-- Detalle Total -->
+            <table class="table" style="padding:0px 0px">
+                <tr>
+                    <td><label class="control-label">Total Neto: </label></td>
+                    <td><label id="Total_Neto" class="control-label">0</label></td>
+                </tr>
+                    
+                <tr>
+                    <td><label class="control-label">Impuesto (19%): </label></td>
+                    <td><label id="impuesto" class="control-label">0</label></td>
+                </tr>
+                    
+                <tr>
+                    <td><label class="control-label">Total: </label></td>
+                    <td><label id="Total_Cotizacion" class="control-label">0</label></td>
+                </tr>         
+            </table>
+<!-- Detalle Total -->
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {
