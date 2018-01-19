@@ -53,7 +53,7 @@ namespace CotizacionesTes {
         }
 
         /// <summary>
-        /// Prueba unitaria de dstintos casos en el metodo validar rut
+        /// Prueba unitaria de distintos casos en el metodo validar rut
         /// </summary>
         [Theory]
         [InlineData("jones@")]

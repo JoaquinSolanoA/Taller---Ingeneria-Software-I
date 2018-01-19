@@ -15,7 +15,7 @@ using System.Text.RegularExpressions;
 namespace Cotizaciones.Controllers
 {
     /// <summary>
-    /// 
+    /// Clase Controlador Logico
     /// </summary>
     public class ControllerLogic : Controller{
 
