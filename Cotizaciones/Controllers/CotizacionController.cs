@@ -73,6 +73,7 @@ namespace Cotizaciones.Controllers
          [HttpPost]
         public JsonResult SaveOrder(Cotizacion c)
         {
+            Console.WriteLine("asd");
             double imp = c.TotalNeto*0.19;
             double total =c.TotalNeto+imp;
             
@@ -81,7 +82,7 @@ namespace Cotizaciones.Controllers
             Cotizacion newcotizacion = new Cotizacion { ClienteId= c.ClienteId, NReferencia = c.NReferencia, TotalNeto = c.TotalNeto, Impuesto = imp, TotalCotizacion = total, FechaEmision = c.FechaEmision, FechaVencimiento = DateTime.Parse("09-01-2001") };
             _context.Add(c);
             _context.SaveChangesAsync();
-
+            Console.WriteLine("asd2");
             //Se ingresan los servicios a la base de datos y se almacena(n) el/los id(s) en list_id_services
             var servicios = c.Servicios;
             foreach (var s in servicios)
@@ -89,9 +90,8 @@ namespace Cotizaciones.Controllers
                 Servicio newserv = new Servicio { Descripcion = s.Descripcion, Cantidad = s.Cantidad, ValorUnitario = s.ValorUnitario, TotalValor = s.Cantidad * s.ValorUnitario };
                 _context.Servicios.Add(newserv);
                 _context.SaveChangesAsync();
-                //id_servicio = _context.Servicios.Last().Id;
             }
-
+            Console.WriteLine("asd3");
             return Json(true);
         }
 

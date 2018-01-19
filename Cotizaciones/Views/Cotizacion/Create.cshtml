@@ -71,7 +71,7 @@
                                     <span class="error">Valor Cantidad requerido</span>
                                 </td>
                                 <td>
-                                    <input class=form-control type="text" id="ValorUnidad" />
+                                    <input class=form-control type="text" id="ValorUnitario" />
                                     <span class="error">Valor Valor Unidad requerido</span>
                                 </td>
                                 <td>
@@ -105,7 +105,7 @@
             </div>
 <!-- Detalle Total -->
             <div class="form-group">
-                <input id="submit" type="submit" value="Crear" class="btn btn-default" />
+                <input class="btn btn-success" id="submit" type="button" value="Crear" style="padding:10px 20px" />
             </div>
         </form>
     </div>
@@ -127,6 +127,7 @@
             var TotalCotizacion=0;
             // Efecto de la funcion cuando le hacen click al boton Agregar a la lista
             $('#add').click(function () {
+                console.log("entre2")
                 //Check validation of order item
                 var isValidItem = true;
                 if ($('#Descripcion').val().trim() == '') {
@@ -145,12 +146,12 @@
                     $('#Cantidad').siblings('span.error').css('visibility', 'hidden');
                 }
 
-                if (!($('#ValorUnidad').val().trim() != '' && !isNaN($('#ValorUnidad').val().trim()))) {
+                if (!($('#ValorUnitario').val().trim() != '' && !isNaN($('#ValorUnitario').val().trim()))) {
                     isValidItem = false;
-                    $('#ValorUnidad').siblings('span.error').css('visibility', 'visible');
+                    $('#ValorUnitario').siblings('span.error').css('visibility', 'visible');
                 }
                 else {
-                    $('#ValorUnidad').siblings('span.error').css('visibility', 'hidden');
+                    $('#ValorUnitario').siblings('span.error').css('visibility', 'hidden');
                 }
 
                 //Add item to list if valid
@@ -158,13 +159,13 @@
                     servicios.push({
                         Descripcion: $('#Descripcion').val().trim(),
                         Cantidad: parseInt($('#Cantidad').val().trim()),
-                        ValorUnidad: parseFloat($('#ValorUnidad').val().trim()),
-                        TotalServicio: parseInt($('#Cantidad').val().trim()) * parseFloat($('#ValorUnidad').val().trim())
+                        ValorUnitario: parseFloat($('#ValorUnitario').val().trim()),
+                        TotalValor: parseInt($('#Cantidad').val().trim()) * parseFloat($('#ValorUnitario').val().trim())
                     });
                     
                     //Clear fields
                     $('#Descripcion').val('').focus();
-                    $('#Cantidad,#ValorUnidad').val('');
+                    $('#Cantidad,#ValorUnitario').val('');
 
                 }
                 //populate order items
@@ -172,7 +173,8 @@
 
             });
             //Save button click function
-            $('#submit').click(function () {
+            $('#submit').click(function(){
+                console.log("entre")
                 //validation of order
                 var isAllValid = true;
                 if (servicios.length == 0) {
@@ -196,15 +198,32 @@
                     $('#FechaEmision').siblings('span.error').css('visibility', 'hidden');
                 }
 
-                if ($('#FechaVencimineto').val().trim() == '') {
-                    $('#FechaVencimineto').siblings('span.error').css('visibility', 'visible');
+                if ($('#FechaVencimiento').val().trim() == '') {
+                    $('#FechaVencimiento').siblings('span.error').css('visibility', 'visible');
                     isAllValid = false;
                 }
                 else {
-                    $('#FechaVencimineto').siblings('span.error').css('visibility', 'hidden');
+                    $('#FechaVencimiento').siblings('span.error').css('visibility', 'hidden');
                 }
                 //Guardar si es valido
+                console.log("entre3")
                 if (isAllValid) {
+                    console.log("entre4")
+                    var url ="@Url.Action("SaveOrder","Cotizacion")";
+                    console.log("entre9")
+                    var data = {
+                        ClienteId: $('#ClienteId').val().trim(),
+                        TotalNeto: TotalNeto,
+                        Impuesto: Impuesto,
+                        TotalCotizacion: TotalNeto+Impuesto,
+                        NReferencia: $('#NReferencia').val().trim(),
+                        FechaEmision: $('#FechaEmision').val().trim(),
+                        FechaVencimiento:$('#FechaVencimiento').val().trim(),
+                        Servicios : servicios
+                    }
+
+                    $(this).val('Por favor esperar...');
+                    console.log("entre5")
                     $.post(url,data).done(function(data){
                         alert('Exito.');
                                 //clear form
@@ -233,15 +252,15 @@
                         var $row = $('<tr/>');
                         $row.append($('<td/>').html(val.Descripcion));
                         $row.append($('<td/>').html(val.Cantidad));
-                        $row.append($('<td/>').html(val.ValorUnidad));
-                        $row.append($('<td/>').html(val.TotalServicio));
+                        $row.append($('<td/>').html(val.ValorUnitario));
+                        $row.append($('<td/>').html(val.TotalValor));
                         var $remove = $('<a href="#">Borrar</a>');
                         $remove.click(function (e) {
                             e.preventDefault();
                             servicios.splice(i, 1);
                             GeneValorUnidaddItemsTable();
                         });
-                        TotalNeto = TotalNeto + val.TotalServicio;
+                        TotalNeto = TotalNeto + val.TotalValor;
                         $row.append($('<td/>').html($remove));
                         $tbody.append($row);
                     });
