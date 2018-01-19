@@ -47,7 +47,7 @@ namespace CotizacionesTes {
         public void excepcionDeCorreoValido() {
 
             var logic = new ControllerLogic();
-            var correo = "david.jones@proseware.com";
+            var correo = "@gmail.com";
             Exception valido = Assert.Throws<ArgumentException>(() => logic.probarCorreo(correo));
             Assert.Equal("CORREO no valido", valido.Message);
         }
@@ -56,9 +56,9 @@ namespace CotizacionesTes {
         /// Prueba unitaria de dstintos casos en el metodo validar rut
         /// </summary>
         [Theory]
-        [InlineData("jones@ms1.proseware.com")]
-        [InlineData("j@proseware.com9")]
-        [InlineData("j.s@server1.proseware.com")]
+        [InlineData("jones@")]
+        [InlineData("j@prosewarecom9")]
+        [InlineData("j.s@server1.proseware..com")]
         [InlineData("j.@server1.proseware.com")]
         [InlineData("j..s@proseware.com")]
         public void excepcionDeCorreoValidoConOtrosCasos(string correo) {

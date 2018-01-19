@@ -63,7 +63,7 @@ namespace Cotizaciones.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(_logic.validarRut(cliente.Rut)){
+                if(_logic.validarRut(cliente.Rut) && _logic.CorreoValido(cliente.Correo)){
                     _context.Add(cliente);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -102,23 +102,27 @@ namespace Cotizaciones.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(cliente);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClienteExists(cliente.Id))
+                if(_logic.validarRut(cliente.Rut) && _logic.CorreoValido(cliente.Correo)){
+                    try
                     {
-                        return NotFound();
+                        
+                        _context.Update(cliente);
+                        await _context.SaveChangesAsync();
+                        
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!ClienteExists(cliente.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(cliente);
         }

@@ -12,8 +12,6 @@ namespace Cotizaciones.Controllers
 {
     public class CotizacionController : Controller
     {
-        public static double impuest = 0.19;
-
         private readonly CotizacionesContext _context;
         public CotizacionController(CotizacionesContext context)
         {
@@ -69,11 +67,14 @@ namespace Cotizaciones.Controllers
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nombre", cotizacion.ClienteId);
             return View(cotizacion);
         }
-
+        /// <summary>
+        /// Guarda al context la cotizacion y los servicios
+        /// </summary>
+        /// <param name="c">Cotizacion</param>
+        /// <returns>Bool</returns>
          [HttpPost]
         public JsonResult SaveOrder(Cotizacion c)
         {
-            Console.WriteLine("asd");
             double imp = c.TotalNeto*0.19;
             double total =c.TotalNeto+imp;
             
@@ -82,7 +83,6 @@ namespace Cotizaciones.Controllers
             Cotizacion newcotizacion = new Cotizacion { ClienteId= c.ClienteId, NReferencia = c.NReferencia, TotalNeto = c.TotalNeto, Impuesto = imp, TotalCotizacion = total, FechaEmision = c.FechaEmision, FechaVencimiento = DateTime.Parse("09-01-2001") };
             _context.Add(c);
             _context.SaveChangesAsync();
-            Console.WriteLine("asd2");
             //Se ingresan los servicios a la base de datos y se almacena(n) el/los id(s) en list_id_services
             var servicios = c.Servicios;
             foreach (var s in servicios)
@@ -91,7 +91,6 @@ namespace Cotizaciones.Controllers
                 _context.Servicios.Add(newserv);
                 _context.SaveChangesAsync();
             }
-            Console.WriteLine("asd3");
             return Json(true);
         }
 
