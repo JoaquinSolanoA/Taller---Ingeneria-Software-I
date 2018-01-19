@@ -13131,11 +13131,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\Taller---Ingeneria-Software-I\\Cotizaciones\\Cotizaciones.csproj",
+      "projectUniqueName": "c:\\GitHub\\Taller---Ingeneria-Software-I\\Cotizaciones\\Cotizaciones.csproj",
       "projectName": "Cotizaciones",
-      "projectPath": "C:\\GitHub\\Taller---Ingeneria-Software-I\\Cotizaciones\\Cotizaciones.csproj",
+      "projectPath": "c:\\GitHub\\Taller---Ingeneria-Software-I\\Cotizaciones\\Cotizaciones.csproj",
       "packagesPath": "C:\\Users\\toty_\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\Taller---Ingeneria-Software-I\\Cotizaciones\\obj\\",
+      "outputPath": "c:\\GitHub\\Taller---Ingeneria-Software-I\\Cotizaciones\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

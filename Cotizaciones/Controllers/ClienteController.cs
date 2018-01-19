@@ -14,9 +14,14 @@ namespace Cotizaciones.Controllers
     {
         private readonly CotizacionesContext _context;
 
+        /// <summary>
+        /// Controlador logico para restringir los datos
+        /// </summary>
+        private readonly ControllerLogic _logic;
         public ClienteController(CotizacionesContext context)
         {
             _context = context;
+            _logic = new ControllerLogic();
         }
 
         // GET: Cliente
@@ -58,9 +63,11 @@ namespace Cotizaciones.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cliente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if(_logic.validarRut(cliente.Rut)){
+                    _context.Add(cliente);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                } 
             }
             return View(cliente);
         }

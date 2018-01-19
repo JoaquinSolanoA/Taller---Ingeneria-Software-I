@@ -9,8 +9,9 @@
 <h4>Cotización</h4>
 <hr />
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <form asp-action="Create">
+        <div class="col-md-5">
             <h4>Detalles de Cotización:</h4>
             <div class="form-group">
                 <label asp-for="ClienteId" class="control-label"></label>
@@ -39,72 +40,230 @@
             </div-->
             <div class="form-group">
                 <label asp-for="FechaEmision" class="control-label"></label>
-                <input asp-for="FechaEmision" class="form-control" />
+                <input asp-for="FechaEmision" type="date"class="form-control" />
                 <span asp-validation-for="FechaEmision" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaVencimiento" class="control-label"></label>
-                <input asp-for="FechaVencimiento" class="form-control" />
+                <input asp-for="FechaVencimiento" type="date" class="form-control" />
                 <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
             </div>
-
+        </div>
 <!-- Ingreso de los datos del Servicio -->
-            <div class="details">
-                <h4>Servicios:</h4>
-                <table class="table" width="100%">
-                    <tr>
-                        <td>Descripción</td>
-                        <td>Cantidad</td>
-                        <td>Valor Unidad</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input class=form-control type="text" id="Descripcion" />
-                        </td>
-                        <td>
-                            <input class=form-control type="text" id="Cantidad" />
-                        </td>
-                        <td>
-                            <input class=form-control type="text" id="ValorUnidad" />
-                        </td>
-                        <td>
-                            <input class="btn btn-primary" type="button" id="add" value="Agregar a la lista" />
-                        </td>
-                    </tr>
-                </table>
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="details">
+                        <h4>Servicios:</h4>
+                        <table class="table" width="100%">
+                            <tr>
+                                <td>Descripción</td>
+                                <td>Cantidad</td>
+                                <td>Valor Unidad</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class=form-control type="text" id="Descripcion" />
+                                    <span class="error">Campo Descripción requerido</span>
+                                </td>
+                                <td>
+                                    <input class=form-control type="text" id="Cantidad" />
+                                    <span class="error">Valor Cantidad requerido</span>
+                                </td>
+                                <td>
+                                    <input class=form-control type="text" id="ValorUnidad" />
+                                    <span class="error">Valor Valor Unidad requerido</span>
+                                </td>
+                                <td>
+                                    <input class="btn btn-primary" type="button" id="add" value="Agregar a la lista" />
+                                </td>
+                            </tr>
+                        </table>
 <!-- Tabla servicios -->
-            <div id="servicios" class="table">
+                        <div id="servicios" class="table">
+                            
+                        </div>
+                    </div>
+                </div>
+<!-- Detalle Total -->
+                <table class="table" style="padding:0px 0px">
+                    <tr>
+                        <td><label class="control-label">Total Neto: </label></td>
+                        <td><label id="TotalNeto" class="control-label">0</label></td>
+                    </tr>
+                        
+                    <tr>
+                        <td><label class="control-label">Impuesto (19%): </label></td>
+                        <td><label id="impuesto" class="control-label">0</label></td>
+                    </tr>
+                        
+                    <tr>
+                        <td><label class="control-label">Total: </label></td>
+                        <td><label id="TotalCotizacion" class="control-label">0</label></td>
+                    </tr>         
+                </table>
             </div>
 <!-- Detalle Total -->
-            <table class="table" style="padding:0px 0px">
-                <tr>
-                    <td><label class="control-label">Total Neto: </label></td>
-                    <td><label id="Total_Neto" class="control-label">0</label></td>
-                </tr>
-                    
-                <tr>
-                    <td><label class="control-label">Impuesto (19%): </label></td>
-                    <td><label id="impuesto" class="control-label">0</label></td>
-                </tr>
-                    
-                <tr>
-                    <td><label class="control-label">Total: </label></td>
-                    <td><label id="Total_Cotizacion" class="control-label">0</label></td>
-                </tr>         
-            </table>
-<!-- Detalle Total -->
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-default" />
+                <input id="submit" type="submit" value="Crear" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <div>
     <a asp-action="Index">Volver a la lista</a>
 </div>
+<!-- Programacion con lenguaje Java script-->
+@section Scripts{
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        // Se activa cuando el metodo esta listo
+        $(document).ready(function () {
+            var servicios = [];
+            var TotalNeto = 0;
+            var Impuesto = 0;
+            var TotalCotizacion=0;
+            // Efecto de la funcion cuando le hacen click al boton Agregar a la lista
+            $('#add').click(function () {
+                //Check validation of order item
+                var isValidItem = true;
+                if ($('#Descripcion').val().trim() == '') {
+                    isValidItem = false;
+                    $('#Descripcion').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#Descripcion').siblings('span.error').css('visibility', 'hidden');
+                }
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                if (!($('#Cantidad').val().trim() != '' && !isNaN($('#Cantidad').val().trim()))) {
+                    isValidItem = false;
+                    $('#Cantidad').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#Cantidad').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('#ValorUnidad').val().trim() != '' && !isNaN($('#ValorUnidad').val().trim()))) {
+                    isValidItem = false;
+                    $('#ValorUnidad').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('#ValorUnidad').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                //Add item to list if valid
+                if (isValidItem) {
+                    servicios.push({
+                        Descripcion: $('#Descripcion').val().trim(),
+                        Cantidad: parseInt($('#Cantidad').val().trim()),
+                        ValorUnidad: parseFloat($('#ValorUnidad').val().trim()),
+                        TotalServicio: parseInt($('#Cantidad').val().trim()) * parseFloat($('#ValorUnidad').val().trim())
+                    });
+                    
+                    //Clear fields
+                    $('#Descripcion').val('').focus();
+                    $('#Cantidad,#ValorUnidad').val('');
+
+                }
+                //populate order items
+                GeneValorUnidaddItemsTable();
+
+            });
+            //Save button click function
+            $('#submit').click(function () {
+                //validation of order
+                var isAllValid = true;
+                if (servicios.length == 0) {
+                    $('#servicios').html('<span style="color:red;">Por favor agregar Servicio</span>');
+                    isAllValid = false;
+                }
+
+                if ($('#NReferencia').val().trim() == '') {
+                    $('#NReferencia').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#NReferencia').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('#FechaEmision').val().trim() == '') {
+                    $('#FechaEmision').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#FechaEmision').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('#FechaVencimineto').val().trim() == '') {
+                    $('#FechaVencimineto').siblings('span.error').css('visibility', 'visible');
+                    isAllValid = false;
+                }
+                else {
+                    $('#FechaVencimineto').siblings('span.error').css('visibility', 'hidden');
+                }
+                //Guardar si es valido
+                if (isAllValid) {
+                    $.post(url,data).done(function(data){
+                        alert('Exito.');
+                                //clear form
+                                servicios = [];
+                                $('#NReferencia').val('');
+                                $('#FechaEmision').val('');
+                                $('#servicios').empty();
+                                $('#TotalNeto').empty();
+                                $('#impuesto').empty();
+                                $('#TotalCotizacion').empty();
+                    }).fail().always(function(){
+                    });
+                }
+
+            });
+            //function for show added items in table
+            function GeneValorUnidaddItemsTable() {
+                if (servicios.length > 0) {
+                    TotalNeto = 0;
+                    Impuesto =0;
+                    TotalCotizacion=0; 
+                    var $table = $('<table class="table" />');
+                    $table.append('<thead><tr><th>Descripción</th><th>Cantidad</th><th>ValorUnidad</th><th>Total</th><th></th></tr></thead>');
+                    var $tbody = $('<tbody/>');
+                    $.each(servicios, function (i, val) {
+                        var $row = $('<tr/>');
+                        $row.append($('<td/>').html(val.Descripcion));
+                        $row.append($('<td/>').html(val.Cantidad));
+                        $row.append($('<td/>').html(val.ValorUnidad));
+                        $row.append($('<td/>').html(val.TotalServicio));
+                        var $remove = $('<a href="#">Borrar</a>');
+                        $remove.click(function (e) {
+                            e.preventDefault();
+                            servicios.splice(i, 1);
+                            GeneValorUnidaddItemsTable();
+                        });
+                        TotalNeto = TotalNeto + val.TotalServicio;
+                        $row.append($('<td/>').html($remove));
+                        $tbody.append($row);
+                    });
+                    Impuesto=TotalNeto*0.19;
+                    TotalCotizacion=TotalNeto+Impuesto;
+                    console.log("current", servicios);
+                    $table.append($tbody);
+                    $('#servicios').html($table);
+                    $('#TotalNeto').html(TotalNeto);
+                    $('#impuesto').html(Impuesto);
+                    $('#TotalCotizacion').html(TotalCotizacion)
+                } else {
+                    TotalNeto = 0;
+                    Impuesto=TotalNeto*0.19;
+                    TotalCotizacion=TotalNeto+Impuesto;
+                    $('#TotalNeto').html(TotalNeto);
+                    $('#impuesto').html(Impuesto);
+                    $('#TotalCotizacion').html(TotalCotizacion)
+                    $('#servicios').html('');
+                }
+            }
+        });
+
+    </script>
 }
